@@ -1,0 +1,4 @@
+#!/bin/bash
+java -cp '.:jars/jing.jar' -Djava.security.manager -Djava.security.policy=dcvm1.policy fr.upmc.components.registry.distributedRegistry.DistributedRegistry config.xml
+# java -cp '.:jars/jing.jar' -Djava.security.manager -Djava.security.policy=dcvm1.policy fr.upmc.components.distributedRegistry.GlobalRegistry config.xml
+# 2 agea-gea

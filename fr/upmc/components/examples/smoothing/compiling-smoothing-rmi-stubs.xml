@@ -1,0 +1,18 @@
+<project name="BasicComponentModel" default="tests.stubs.compilation">
+	<target name="tests.stubs.compilation">
+		<echo message="Recompiling stubs..."/>
+		<echo message="Recompiling fr.upmc.components.examples.smoothing.sensor.SensorDataInboundPort"/>
+		<rmic classpath="${classpath}:../../../../../../../BasicComponentModel/bin/"
+			  classname="fr.upmc.components.examples.smoothing.sensor.SensorDataInboundPort"
+		      base="../../../../../../../BasicComponentModel/bin/"/>
+		<echo message="Recompiling fr.upmc.components.examples.smoothing.filter.SensorDataOutboundPort"/>
+		<rmic classpath="${classpath}:../../../../../../../BasicComponentModel/bin/"
+			  classname="fr.upmc.components.examples.smoothing.filter.SensorDataOutboundPort"
+		      base="../../../../../../../BasicComponentModel/bin/"/>
+		<echo message="Recompiling fr.upmc.components.examples.smoothing.gauge.PairedGaugePort"/>
+		<rmic classpath="${classpath}:../../../../../../../BasicComponentModel/bin/"
+			  classname="fr.upmc.components.examples.smoothing.gauge.PairedGaugePort"
+		      base="../../../../../../../BasicComponentModel/bin/"/>
+		<echo message="Stubs recompiled!"/>
+	</target>
+</project>

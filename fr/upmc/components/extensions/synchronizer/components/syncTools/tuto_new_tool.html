@@ -1,0 +1,62 @@
+<html>
+<head>
+ <meta charset="UTF-8">
+</head>
+<body>
+
+<h3>Création d'un nouveau composant de synchronisation</h3>
+	
+<ol>
+
+<li><strong>Mettre en place le nouveau service :</strong>
+
+	<ul>
+	<li>Créer le composant (hérite de AbstractComponent) avec une méthode 
+	<code>getOwnPortURI</code> (1 fichier)</li>
+	<li>Créer les deux interfaces et les deux ports inbound et outbound pour le 
+	service de création de port dynamique + le connecteur (5 fichiers)</li>
+	<li>Créer les deux interfaces et les deux ports inbound et outbound pour le 
+	premier service de synchronisation + le connecteur (5 fichiers)</li>
+	<li>Faire pareil que précédemment pour les éventuels autres services ...</li>
+	</ul>
+
+</li>
+
+<li><strong>Faire les ajouts dans le SynchronizerManager :</strong>
+
+	<ul>
+	<li>Ajouter les 3 champs spécifiques et les initialiser dans le 
+	constructeur</li>
+	<li>Ajouter la méthode <code>provide[nouvel_outil]URI</code> sur le modèle 
+	des autres méthodes provide; 
+	/!\ Attention : Les paramètres des constructeurs des composants de 
+	synchronisation doivent tous hériter de <code>Object</code> (pas de type 
+	primitif)</li>
+	<li>La nouvelle méthode <code>provide</code> étant un nouveau service du 
+	composant <code>SynchronizerManager</code>, il faut propager la mise à jour
+	dans tous les services, ports et connecteur du 
+	<code>SynchronizerManager</code></li>
+	<li>Rajouter une méthode statique <code>encode[outil]ID</code> qui prend en
+	paramètre un ID, et tous les paramètres du constructeur de l'outil (Ces 
+	paramètres doivent pouvoir être mis sous forme de string).
+	Cette méthode sera utilisée par l'assembly pour créer des ID de groupe pour
+	ce type d'outil.</li>
+	</ul>
+
+</li>
+
+<li><strong>Faire les ajouts dans le délégué :</strong>
+
+	<ul>
+	<li>Ajouter un nouveau <code>if</code> dans la méthode <code>getPort</code> 
+	correspondant aux nouveaux services précédemment mis en place.</li>
+	<li>Ce <code>if</code> doit lancer l'appel à la méthode 
+	<code>connect[outil]</code> qu'il faudra ajouter sur le modèle des autres
+	méthodes de ce genre.</li>
+	</ul>
+	
+</li>
+
+</ol>
+</body>
+</html>

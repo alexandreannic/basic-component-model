@@ -1,0 +1,22 @@
+<!-- fr.upmc.components.registry -->
+<html>
+<body>
+<p>Global registry for the publication of component ports.</p>
+
+<p>
+    The RMI registry implementation coming in open implementation of Java
+    typically forbids the modification of an entry done from a remote host.
+    Hence, storing entries must be done on the same host as where the request
+    is made. To circumvent this limitation, each host is running its own copy of
+    the RMI registry, and publication is done locally to the host. But then, one
+    need to know on which host to send a RMI request when trying to connect to a
+    remote object. The class <code>GlobalRegistry</code> implements a simple
+    central registry where to store the information about the host running the RMI
+    registry on which some object has been published. The class
+    <code>GlobalRegistryClient</code> implements the client side of the registry,
+    a singleton of which must exist in each of the JVM where requests must be sent
+    to this global registry.
+</p>
+
+</body>
+</html>

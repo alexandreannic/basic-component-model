@@ -1,0 +1,19 @@
+<deployment>
+  <cyclicBarrier   hostname="localhost" port="55253"/>
+  <globalRegistry  hostname="localhost" port="55252"/>
+  <rmiRegistryPort no="55999"/>
+  <jvms2hostnames>
+    <jvm2hostname jvmuri="sensor1" rmiRegistryCreator="true"
+                  hostname="localhost"/>
+    <jvm2hostname jvmuri="sensor2" rmiRegistryCreator="false"
+                  hostname="localhost"/>
+    <jvm2hostname jvmuri="filter1" rmiRegistryCreator="false"
+                  hostname="localhost"/>
+    <jvm2hostname jvmuri="filter2" rmiRegistryCreator="false"
+                  hostname="localhost"/>
+    <jvm2hostname jvmuri="gauge1" rmiRegistryCreator="false"
+                  hostname="localhost"/>
+    <jvm2hostname jvmuri="gauge2" rmiRegistryCreator="false"
+                  hostname="localhost"/>
+  </jvms2hostnames>
+</deployment>

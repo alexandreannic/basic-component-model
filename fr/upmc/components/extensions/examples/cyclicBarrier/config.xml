@@ -1,0 +1,17 @@
+<deployment>
+  <cyclicBarrier   hostname="localhost" port="55253"/>
+  <globalRegistry  hostname="localhost" port="55252"/>
+  <rmiRegistryPort no="55999"/>
+  <jvms2hostnames>
+    <jvm2hostname jvmuri="client1_uri" rmiRegistryCreator="true"
+                  hostname="localhost"/>
+    <jvm2hostname jvmuri="client2_uri" rmiRegistryCreator="false"
+                  hostname="localhost"/>
+	<jvm2hostname jvmuri="client3_uri" rmiRegistryCreator="false"
+                  hostname="localhost"/>
+	<jvm2hostname jvmuri="client4_uri" rmiRegistryCreator="false"
+                  hostname="localhost"/>
+    <jvm2hostname jvmuri="sm_uri" rmiRegistryCreator="false"
+                  hostname="localhost"/>
+  </jvms2hostnames>
+</deployment>

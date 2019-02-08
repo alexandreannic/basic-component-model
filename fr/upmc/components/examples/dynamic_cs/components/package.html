@@ -1,0 +1,25 @@
+<!-- fr.upmc.components.exemples.dynamic_cs.components -->
+<html>
+<body>
+<p>Components for the dynamic client/server example</p>
+
+<p>
+The dynamic client/server example uses three components:
+</p>
+<ul>
+<li><code>DynamicURIConsumer</code> is the dynamic version of the component
+  <code>URIConsumer</code> of the basic client/server example.  It merely adds
+  to the later the dynamic connection service of the interface
+  <code>DynamicallyConnectableComponentI</code>.</li>
+<li><code>DynamicURIProvider</code> is the dynamic version of the component
+  <code>URIProvider</code> of the basic client/server example.  It also adds
+  to the later the dynamic connection service of the interface
+  <code>DynamicallyConnectableComponentI</code>, but it would not really be
+  needed for such client/server connections since we only need to connect on
+  the client side in this case.</li>
+<li><code>DynamicAssembler</code> that creates the other components, makes them
+  interconnect, and starts them.</li>
+</ul>
+
+</body>
+</html>

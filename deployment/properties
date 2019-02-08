@@ -1,0 +1,33 @@
+# Name of the config file
+config_xml = config.xml
+
+# Directory where is stored the project on the local host
+local_dir = ../
+
+# Remote directory where the necessary files will be uploaded
+remote_dir = ~/Desktop/BC/
+
+# User name will be used to connect to remote machine via ssh
+username = 
+
+# Adress ip of the local machine. 
+local_ip = 192.168.1.25
+
+# Class path of components
+cp_gregistry = 	fr.upmc.components.registry.distributedRegistry.DistributedRegistry
+cp_cyclicbarrier = fr.upmc.components.cvm.utils.DCVMCyclicBarrier
+cp_dcvm = fr.upmc.components.examples.basic_cs.DistributedCVM
+
+# Set to 0 to keep the files already uploaded on remote hosts.
+# Set to 1 to override them.
+copy_file = 0
+
+# Define files to copy on remote hosts. 
+# Path have to be defined from local_dir
+# To define severals files, separate them with ;
+# The following files/directorys will always be copied :
+# - jars/
+# - policies/
+# - config/
+# - config.xml
+transfered_files = ;;

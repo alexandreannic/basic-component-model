@@ -1,0 +1,108 @@
+<!-- fr.upmc.components.patterns.dconnection (dynamic connection) -->
+<html>
+<body>
+<p>Component dynamic interconnection pattern.</p>
+<p>
+The package <code>fr.upmc.components.patterns.dconnection</code> defines and
+implements a component dynamic interconnection pattern.
+</p>
+<p><strong>Description</strong></p>
+<p>
+The component model uses ports and connectors to interconnect components.
+In static architectures, interconnections that need to be done are known
+at initialisation time.  However, in dynamic architectures, connection can
+appear and disappear during the execution.  Such dynamic architectures are
+especially needed when components also appear during execution and when
+the number of interconnections vary over time.
+</p>
+<p>
+The pattern uses two set of interfaces/ports/connector:
+</p>
+<ul>
+<li>a static interface/port/connector offers the dynamic connection service
+  through an offered interface and its inbound port that is created at
+  initialisation time;</li>
+<li>a dynamic interface/port/connector represent the actual dynamic connections
+  that the component can handle.</li>
+</ul>
+<p>
+When a client component wants to dynamically connect to the offering server
+component, it dynamically creates an outbound port on the required interface
+for dynamic connection request and connects it to the inbound port of the
+server.  It then uses this connection to request from the server the URI of a
+new port on the dynamic connection interface <i>per se</i>.  The client itself
+creates a port for the dynamic connection, connects it to the server-provided
+port and in a second exchange through the dynamic connection interface, it
+sends the URI of this new port to the server.  The server then connects its
+dynamic port to the one of the client.  After this, the dynamic connection
+becomes operational and the client can just discard its connection to the
+dynamic connection request interface of the server.  Hence, the server
+continuously offers the dynamic connection service, but the client connects to
+it only for the time required to set up a dynamic connection.  Indeed, this
+pattern is meant to cater for an unlimited number of dynamic connection
+accessible through a permanent and open dynamic connection service offered by
+the server.
+</p>
+<p>
+<i>Note:</i> the terms client and server in the above description refer to the
+respective roles of the component that initiates the dynamic connection and
+the component that waits for such requests.  The dynamic connection built
+through this pattern need not be a client/server one, but can also be a
+data connection or a two way connection.
+</p>
+<p>
+<i>Note:</i> this package is meant to handle only one type of dynamic connection.
+Another class offers a multiple types of dynamic connections capability.
+</p>
+<p>Protocol</p>
+<p>
+The client is the one that requires the
+<code>DynamicConnectionRequestRequiredI</code> interface, while the server is
+the component that offers the companion
+<code>DynamicConnectionRequestOfferedI</code> interface.
+</p>
+<pre>
+                                          Client                                 Server
+                                             |                                      |
+                                        -----|                                      |
+               connectDynamicallyWith() |    |                                      |
+                                        ---->|                                      |
+                                             |         requestNewPortURI()          |
+                                             |------------------------------------->|
+                                             |                                      |   creates a new dynamic port and publish it
+                                             |                                      |-----
+                                             |                                      |    | createAndPublishServerSideDynamicPort()  
+                                             |                                      |<----
+                                             |            new port URI              | 
+                                             |<-------------------------------------|
+          creates a new port and publish it  |                                      |
+                                        -----|                                      |
+createAndPublishClientSideDynamicPort() |    |                                      |
+                                        ---->|                                      |
+                connects to the server port  |                                      |
+                                        -----|                                      |
+               createDynamicConnector() |    |                                      |
+                                        ---->|                                      |
+                                             |                                      |
+                                             |           acceptNewPort()            |
+                                             |------------------------------------->|
+                                             |                                      | connect to the client port
+                                             |                                      |-----
+                                             |                                      |    | createDynamicConnector()
+                                             |                                      |<----
+                                             |            connection OK             |
+                                             |<-------------------------------------|
+                                             |                                      |
+                                             | components can now exchange          |
+                                             |                                      |
+</pre>
+<p>
+The abstract class <code>DynamicConnectionRequestBehaviour</code>
+defines the methods and data needed to implement both the client and the server
+sides of the protocol.  To use the protocol, programmers have to define a
+concrete subclass of this abstract class, and provide implementations for
+methods which depends upon the dynamic interfaces, ports, connectors as well
+as the exact way to publish and unpublish the ports for the dynamic connection.
+</p>
+</body>
+</html>

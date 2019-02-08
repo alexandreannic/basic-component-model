@@ -1,0 +1,35 @@
+<!-- fr.upmc.components.assemblies.pre -->
+<html>
+<body>
+<p>Dynamic remote component creation and connection for component assemblies.</p>
+
+<p>
+This package introduces predefined components <code>DynamicComponentCreator</code>
+automatically added to each instance of assemblies to provide for a dynamic
+and remote component creation service.  The basic idea is that each instance
+of the assembly on each virtual machine has a copy of such a component that
+offers the interface <code>DynamicComponentCreationI</code>.  The URI of the
+inbound port through which the service is offered is created from the URI of
+the JVM suffixed by "-dcc".  A component that want to create another component
+on a remote JVM has to create an outbound port
+<code>DynamicComponentCreationOutboundPort</code>, connect it to the inbound
+port of the dynamic component creator running on the remote virtual machine,
+and call the service <code>createComponent</code> with the appropriate
+parameters.
+</p>
+
+<p>
+A complementary service is provided by the package: tha capability to make
+a component execute an connection with another component.  As the connection
+logic offered by the <code>ConnectionBuilder</code> assumes that the connection
+is made by a component local to the virtual machine where the
+<code>ConnectionBuilder</code> code is executed with another component that
+can be remote, a third party component asking for the creation of a component
+on a remote JVM cannot itself connect this component to another one.  Hence,
+a <code>DynamicallyConnectableComponentI</code> interface defines the necessary
+service to be called on a component <code>C</code> to connect a port of
+<code>C</code> to a port of another component.
+</p>
+
+</body>
+</html>

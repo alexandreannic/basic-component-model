@@ -1,0 +1,19 @@
+<!-- fr.upmc.components.examples.smoothing.sensor -->
+<html>
+<body>
+<p>Component and port for sensor simulators</p>
+
+<p>
+The package <code>fr.upmc.components.examples.smoothing.sensor</code>
+provides a sensor simulator component and its port used to offer its
+service.  The sensor simulator produces normally distributed random
+numbers, currently of given (at creation time) fixed mean and standard
+deviation.  Hence, it uses subcomponents, created as sequential here,
+to compute these numbers.  A subcomponent <code>NormalRNGenerator</code>
+computes teh random numbers provided by the sensor simulator, but this
+component in turn uses two <code>UniformRNGenerator</code> components
+to do so.
+</p>
+
+</body>
+</html>

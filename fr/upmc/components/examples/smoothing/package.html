@@ -1,0 +1,142 @@
+<!-- fr.upmc.components.examples.smoothing -->
+<html>
+<body>
+<p>Smoothing pushed data.</p>
+
+<p>
+The package <code>fr.upmc.components.examples.smoothing</code> implements an
+example that is meant to test the different functionalities of the basic
+component model.  The basic idea is to smooth (by averaging) data pushed from
+a pair of sensors through filters before pushing them further to the gauges to
+be displayed.  Sources are considered as two different sensors to produce what
+should be the same data, hence gauges will be paired exchange the values they
+receive so they can display their deviation from the other source each time
+they display a new value for them.
+</p>
+
+<p>
+To simulate the sensors, a composite concurrent component
+<code>SensorSimulator</code> produces sensor data using random numbers
+generated using three internal sequential components, illustrating the
+capability of the model to define subcomponents:
+</p>
+<ul>
+<li>Two <code>UniformRNGenerator</code> components that generate uniform random
+  numbers, and
+</li>
+<li>One <code>NormalRNGenerator</code> component that takes two uniform random
+  numbers from the components <code>UniformRNGenerator</code>, add compute
+  a normal random number from them using the Box-Muller approach, and then
+  return the result as a new random number.
+</li>
+</ul>
+
+<p>
+The concurrent component <code>SensorSimulator</code> has an internal main task
+that produces random numbers at a given time interval and pushes the data
+towards two concurrent component <code>Filter</code> that buffer them.
+<code>Filter</code> are used by two gauge components
+<code>Gauge</code> that get the filtered values from them in pull mode and
+prints them on <code>System.out</code>.
+The two <code>Gauge</code> are connected through a
+two-way interface <code>PairedGaugeI</code> to exchange their most recently
+received values.  The following figure illustrates this assembly:
+</p>
+
+<img SRC="../../../../../../images/smoothing.jpg"/>
+
+<p>
+See the documentation of the companion basic client/server example to know
+all the steps required to go from design to execution of such a component-based
+application.  New in this example is the use of data and two way interfaces,
+as well as composite components.
+</p>
+
+<p>
+As an example, random number generation services are defined by the data
+interfaces <code>RNGDataOfferedI</code> and <code>RNGDataRequiredI</code>.
+Data interfaces in the component model contain three Java interfaces:
+</p>
+<ol>
+<li>a pull interface, used when data are pulled by the client from the
+  provider;</li>
+<li>a push interface, used when data are pushed by the provider to the
+  client; and</li>
+<li>a data interface, used to type the data objects that are exchanged by
+  the methods of the pull and push interfaces.</li>
+</ol>
+
+<p>
+The standard <code>DataOfferedI</code> and <code>DataRequiredI</code> defined
+in the model proposes pull and push interfaces with methods that can readily
+be used 'as is'.  The seldom need to be redefined, though it is still possible
+to do so if this appears fruitful for the application (using more meaningful
+method names for example).  The two data interfaces defined in the two standard
+interfaces however is empty, hence each application of a data exchange
+connection must define their own interfaces or at least objects that will be
+exchanged.  The simplest way to do so is to define a class that implements
+both the <code>DataOfferedI.DataI</code> and the <code>DataRequiredI.DataI</code>
+interfaces.  Then, instances of this class will be used both by the provider
+and the client to exchange data.  The standard <code>DataConnector</code> can
+then be used to connect the ports.  A slightly more complicated case is when
+the two application data offered and required interfaces propose their own
+data interface extending the ones of the standard interfaces.  Then the class
+of the objects that will be exchanged will need to implement these two interfaces
+rather than the standard ones.  Beware that data inbound and outbound ports
+must implement both the pull and the push interfaces to connect the component
+properly and allow the exchanges to be made in the two modes.  However, if
+one mode is not used in the application, methods need not do something.
+</p>
+<p>
+If the provider and the client components are developed independently, they
+will most probably have their own classes to implement the data interface of
+the client (required) and the data interface of the provider (offered)
+respectively.  In this case, when a data object is pushed by the provider, it
+will need to be transformed into a data object of the client before the latter
+can use it.  This is done by the connector by redefining the method
+<code>required2offered</code> of the connector.  These methods have standard
+definition to simply cast the object to the offered data interface.
+</p>
+
+<p>
+Two way interfaces are used in the example to connect the gauge so that they
+can pull the last displayed value from each other in the same manner.  The
+symmetry of the call makes it difficult for the ports and the connector to
+forward the call to the correct component, as standard method call do not
+identify the caller.  Hence, at this point, all methods in a two way interface
+should explicitly pass as argument the caller port, so that when programming
+the ports and the connector, the code in the connector can test is the caller
+is the offering or requiring side, and the ports can know if the caller is its
+owner or not.
+</p>
+
+<p>
+The component sensor simulator provides an example of a composite component.
+A composite component is responsible for the creation, the starting and the
+shutting down of its subcomponents.  A strong hypothesis of the model is that
+a composite component and all of its subcomponents must reside in the same JVM.
+Hence, they are always local.  Furthermore, subcomponents cannot be called
+from the outside of the composite, except if the composite makes one of the
+subcomponent port visible as one of its own ports.  Subcomponents can therefore
+be created as local, and their port only locally published.  They can be created
+and interconnected at one in the constructor of the composite component for
+example.  Subcomponents are not inserted in the deployed component of the
+assembly but rather known as subcomponents of the composite which will be
+able to start them or shut them down when itself it is (this is done in the
+<code>start</code> and <code>shutdown</code> methods of
+<code>AbstractComponent</code>.  Beware that subcomponents must be explicitly
+disconnected from each other before they can be shut down, as components are
+in the assembly.
+</p>
+
+<p>
+The single JVM CVM creates components and ports, publishes the ports and
+connects the components in the <code>deploy</code> method.  The distributed
+CVM uses six JVM to run the application: one for each sensor simulator,
+filter and gauge.  Notice that data and two way distant connections must be
+made in the two JVM of their distant components.  This is to cater for the
+pull and push calls for the data connections, and the peer-to-peer calls in
+the two way for the two way connections.
+</p>
+</body>
+</html>

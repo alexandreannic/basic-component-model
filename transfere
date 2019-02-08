@@ -1,0 +1,12 @@
+#!/bin/bash
+scp -rp fr alex@192.168.1.26:~/Desktop/BC
+#scp -rp fr alex@192.168.1.26:~/Desktop/BC
+scp -rp config alex@192.168.1.26:~/Desktop/BC
+scp -rp policies alex@192.168.1.26:~/Desktop/BC
+#scp -rp jars alex@192.168.1.26:~/Desktop/BC
+scp dcvm alex@192.168.1.26:~/Desktop/BC
+#scp registry alex@192.168.1.26:~/Desktop/BC
+scp config.xml alex@192.168.1.26:~/Desktop/BC
+#scp dcvm1.policy alex@192.168.1.26:~/Desktop/BC
+#ssh alex@192.168.1.26 "cd ~/Desktop/BC && java -cp '.:jars/jing.jar' -Djava.security.manager -Djava.security.policy=dcvm.policy fr.upmc.components.examples.basic_cs.DistributedCVM $1 config.xml"    
+

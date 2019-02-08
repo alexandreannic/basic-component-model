@@ -1,0 +1,24 @@
+<!-- fr.upmc.components.exemples.dynamic_cs -->
+<html>
+<body>
+<p>Dynamic client/server example</p>
+
+<p>
+This example is meant to learn how to create and execute assembly at run-time,
+rather than using the static method of the assembly class to create,
+interconnect and start the components.
+</p>
+<p>
+The example proposes a dynamic client/server version of the basic one that is
+obtained by using the dynamic component creation service of the basic component
+model.  This service allows for the remote creation of a component at run-time.
+Hence, all of the deployment can be made at run-time: creation, start and
+connection and execution of the components.  A new component, called
+<code>DynamicAssembler</code>, implements the creation, the interconnection
+and the execution of the components.  Hence, the static assembly has just to
+create and start this component to create the assembly at run-time and then
+meke the other components run the application.
+</p>
+
+</body>
+</html>

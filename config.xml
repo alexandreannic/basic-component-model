@@ -1,0 +1,14 @@
+<deployment>
+<cyclicBarrier hostname="192.168.1.25" port="55253"/>
+<globalRegistry hostname="192.168.1.25" port="55252">
+	<centralRegistry port="55353" directorySize="3" uname="alex" sourcesLocation="~/Desktop/BC"/>
+</globalRegistry>
+<rmiRegistryPort no="55999"/>
+<jvms2hostnames>
+<jvm2hostname 
+	jvmuri="provider" 
+	rmiRegistryCreator="true"
+	 hostname="192.168.1.25"/>
+<jvm2hostname jvmuri="consumer" rmiRegistryCreator="true" hostname="192.168.1.26"/>
+</jvms2hostnames>
+</deployment>
