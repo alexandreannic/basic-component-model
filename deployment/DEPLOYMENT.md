@@ -29,8 +29,8 @@ configuration file for the optional arguments.
  
 #### File structure
 
-Fields and values must be separated by '='. If a field does not exist or is empty, default values will 
-be used. Lines starting with '#' will be ignored.
+Fields and values must be separated by `=`. If a field does not exist or is empty, default values will 
+be used. Lines starting with `#` will be ignored.
 
 #### Parameters
 
