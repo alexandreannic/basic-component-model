@@ -1,10 +1,9 @@
 package fr.upmc.components.registry.distributedRegistry;
 
+import fr.upmc.components.registry.distributedRegistry.exceptions.UncoveredKeyException;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import fr.upmc.components.registry.distributedRegistry.centralRegistry.CentralRegistryClient;
-import fr.upmc.components.registry.distributedRegistry.exceptions.UncoveredKeyException;
 
 /**
  * The class <code>DistributedRegistryHandler</code> allow to communicate with the set of

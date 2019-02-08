@@ -1,13 +1,13 @@
 package fr.upmc.components.registry.distributedRegistry.centralRegistry;
 
+import fr.upmc.components.registry.distributedRegistry.DistributedRegistry;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
-
-import fr.upmc.components.registry.distributedRegistry.DistributedRegistry;
 
 /**
  * The class <code>CentralRegistryClient</code> provides a convenient intermediary to send requests

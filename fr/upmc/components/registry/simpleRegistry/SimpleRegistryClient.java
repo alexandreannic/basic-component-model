@@ -1,14 +1,14 @@
 package fr.upmc.components.registry.simpleRegistry;
 
+import fr.upmc.components.registry.GlobalRegistry;
+import fr.upmc.components.registry.GlobalRegistryClient;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
-
-import fr.upmc.components.registry.GlobalRegistry;
-import fr.upmc.components.registry.GlobalRegistryClient;
 
 /**
  * The class <code>RegistryClient</code> provides a convenient intermediary
@@ -62,8 +62,8 @@ public class SimpleRegistryClient implements GlobalRegistryClient {
 	 * </pre>
 	 *
 	 * @param command command to be sent.
-	 * @throws Exception
 	 * @return string representing the result of the request.
+	 * @throws Exception
 	 */
 	public String sendCommand(String command)
 	throws Exception {
@@ -103,8 +103,8 @@ public class SimpleRegistryClient implements GlobalRegistryClient {
 	 * </pre>
 	 *
 	 * @param key key to be looked up.
-	 * @throws Exception
 	 * @return result of the request.
+	 * @throws Exception
 	 */
 	public synchronized String lookup(String key) throws Exception {
 		return this.sendCommand("lookup " + key);

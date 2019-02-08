@@ -1,10 +1,10 @@
 package fr.upmc.components.registry.distributedRegistry.centralRegistry;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintStream;
+import fr.upmc.components.cvm.config.ConfigurationFileParser;
+import fr.upmc.components.cvm.config.ConfigurationParameters;
+import fr.upmc.components.registry.distributedRegistry.KeysCoverage;
+
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -14,10 +14,6 @@ import java.util.Set;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
-import fr.upmc.components.cvm.config.ConfigurationFileParser;
-import fr.upmc.components.cvm.config.ConfigurationParameters;
-import fr.upmc.components.registry.distributedRegistry.KeysCoverage;
 
 /**
  * The class <code>GRegistry</code> implements a registry used to referenced the distributed

@@ -1,20 +1,16 @@
 package fr.upmc.components.registry.distributedRegistry;
 
+import fr.upmc.components.registry.GlobalRegistry;
+import fr.upmc.components.registry.distributedRegistry.centralRegistry.CentralRegistry;
+import fr.upmc.components.registry.distributedRegistry.centralRegistry.CentralRegistryClient;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.CountDownLatch;
-
-import fr.upmc.components.registry.GlobalRegistry;
-import fr.upmc.components.registry.distributedRegistry.centralRegistry.CentralRegistry;
-import fr.upmc.components.registry.distributedRegistry.centralRegistry.CentralRegistryClient;
 
 /**
  * The class <code>DistributedRegistry</code> implements an instance of a distributed registry for

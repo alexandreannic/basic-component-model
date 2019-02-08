@@ -29,8 +29,8 @@ public class SocketUtilities {
 	 * </pre>
 	 *
 	 * @param is input stream on which to read.
-	 * @throws IOException
 	 * @return the string just read.
+	 * @throws IOException
 	 */
 	public static String lireInputStream(InputStream is)
 	throws IOException {

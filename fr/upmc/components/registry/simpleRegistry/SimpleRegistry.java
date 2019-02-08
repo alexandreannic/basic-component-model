@@ -1,20 +1,14 @@
 package fr.upmc.components.registry.simpleRegistry;
 
+import fr.upmc.components.registry.GlobalRegistry;
+
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
-import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Hashtable;
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
-import fr.upmc.components.cvm.config.ConfigurationFileParser;
-import fr.upmc.components.cvm.config.ConfigurationParameters;
-import fr.upmc.components.registry.GlobalRegistry;
 
 /**
  * The class <code>GlobalRegistry</code> implements the global registry for the
@@ -59,19 +53,6 @@ public class SimpleRegistry extends GlobalRegistry {
 	/**
 	 * The class <code>ProcessLookup</code> implements a runnable task used to
 	 * look up the registry for a given key.
-	 *
-	 * <p><strong>Description</strong></p>
-	 *
-	 * <p><strong>Invariant</strong></p>
-	 *
-	 * <pre>
-	 * invariant	true
-	 * </pre>
-	 *
-	 * <p>Created on : 2012-10-22</p>
-	 *
-	 * @author  <a href="mailto:Jacques.Malenfant@lip6.fr">Jacques Malenfant</a>
-	 * @version $Name$ -- $Revision$ -- $Date$
 	 */
 	protected static class ProcessLookup
 					implements Runnable {
@@ -113,19 +94,6 @@ public class SimpleRegistry extends GlobalRegistry {
 	 * The class <code>ProcessPut</code> implements a runnable task used to
 	 * update the registry with the association of a given key to a given
 	 * value.
-	 *
-	 * <p><strong>Description</strong></p>
-	 *
-	 * <p><strong>Invariant</strong></p>
-	 *
-	 * <pre>
-	 * invariant	true
-	 * </pre>
-	 *
-	 * <p>Created on : 2012-10-22</p>
-	 *
-	 * @author  <a href="mailto:Jacques.Malenfant@lip6.fr">Jacques Malenfant</a>
-	 * @version $Name$ -- $Revision$ -- $Date$
 	 */
 	protected static class ProcessPut implements Runnable {
 
@@ -165,19 +133,6 @@ public class SimpleRegistry extends GlobalRegistry {
 	/**
 	 * The class <code>ProcessRemove</code> implements a runnable task used to
 	 * remove the association of a given key from the registry.
-	 *
-	 * <p><strong>Description</strong></p>
-	 *
-	 * <p><strong>Invariant</strong></p>
-	 *
-	 * <pre>
-	 * invariant	true
-	 * </pre>
-	 *
-	 * <p>Created on : 2012-10-22</p>
-	 *
-	 * @author  <a href="mailto:Jacques.Malenfant@lip6.fr">Jacques Malenfant</a>
-	 * @version $Name$ -- $Revision$ -- $Date$
 	 */
 	protected static class ProcessRemove implements Runnable {
 
@@ -216,19 +171,6 @@ public class SimpleRegistry extends GlobalRegistry {
 	 * registry exchanging with one client; its processes the requests from the
 	 * clients until the latter explicitly disconnects with a "shutdown" request
 	 * of implicitly with a null string request.
-	 *
-	 * <p><strong>Description</strong></p>
-	 *
-	 * <p><strong>Invariant</strong></p>
-	 *
-	 * <pre>
-	 * invariant	true
-	 * </pre>
-	 *
-	 * <p>Created on : 30 janv. 2014</p>
-	 *
-	 * @author  <a href="mailto:Jacques.Malenfant@lip6.fr">Jacques Malenfant</a>
-	 * @version $Name$ -- $Revision$ -- $Date$
 	 */
 	protected static class ServiceRunnable
 					implements Runnable {

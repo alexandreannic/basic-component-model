@@ -1,5 +1,8 @@
 package fr.upmc.components.registry;
 
+import fr.upmc.components.cvm.config.ConfigurationFileParser;
+import fr.upmc.components.cvm.config.ConfigurationParameters;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -7,9 +10,6 @@ import java.util.Hashtable;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
-import fr.upmc.components.cvm.config.ConfigurationFileParser;
-import fr.upmc.components.cvm.config.ConfigurationParameters;
 
 /**
  * The abstract class <code>GlobalRegistry</code> defines the common properties of the global

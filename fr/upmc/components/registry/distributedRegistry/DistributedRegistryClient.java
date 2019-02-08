@@ -1,5 +1,7 @@
 package fr.upmc.components.registry.distributedRegistry;
 
+import fr.upmc.components.registry.GlobalRegistryClient;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -7,8 +9,6 @@ import java.io.PrintStream;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
-
-import fr.upmc.components.registry.GlobalRegistryClient;
 
 /**
  * The class <code>RegistryClient</code> provides a convenient intermediary to send requests to a
