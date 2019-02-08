@@ -1,6 +1,6 @@
 # BasicComponentModel
 
-This repository show the project of the UE **ALASCA** (Advanced Software Architectures for Self-Adaptive Complex Systems) achieved during my Master 1 (2014).
+This repository contains the project of the UE **ALASCA** (Advanced Software Architectures for Self-Adaptive Complex Systems) achieved during my Master 1 (2014).
 
 - Subject of the project can be found [here](report/Sujet.pdf);
 - My final report can be found [here](report/PSTL-ANNIC_Alexandre.pdf);
